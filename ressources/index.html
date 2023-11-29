@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>4. Ressources - Analyse des génomes 2023</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4. Ressources";
+        var mkdocs_page_input_path = "ressources.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Analyse des génomes 2023
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../srna/">1. Petits ARN</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rnaseq/">2. RNAseq</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../igv/">3. IGV</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">4. Ressources</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#donnees-brutes">Données brutes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#genomic-features">Genomic features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#petits-arn">Petits ARN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#arn">ARN</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#amorces-de-qpcr">Amorces de qPCR</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#chip-seq">ChIP-seq</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#locus-de-pirna">Locus de piRNA</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../annexes/">5. Annexes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Analyse des génomes 2023</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">4. Ressources</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="4-ressources">4. Ressources</h1>
+<p>Cette section regroupe un ensemble de fichier ressources utiles pour le TP</p>
+<hr />
+<h2 id="donnees-brutes">Données brutes</h2>
+<h3 id="genomic-features">Genomic features</h3>
+<p>Pour ce TP nous utiliserons la version 6.54 du génome de <em>Drosophila melanogaster</em> dont les fichiers de séquence au format fasta sont accessibles sur le <a href="https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/">site FTP de Flybase</a>.
+La liste ci-dessous peut-être directement importée dans votre serveur Galaxy. </p>
+<pre><code>https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/dmel-all-chromosome-r6.54.fasta.gz   dmel-r6.54-fasta
+https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/dmel-all-miRNA-r6.54.fasta.gz    dmel-r6.54-miRNA
+https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/dmel-all-miscRNA-r6.54.fasta.gz  dmel-r6.54-miscRNA
+https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/dmel-all-tRNA-r6.54.fasta.gz dmel-r6.54-tRNA
+https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/gtf/dmel-all-r6.54.gtf.gz  dmel-r6.54-gtf
+</code></pre>
+<p>Séquence du transgène PLacZ</p>
+<pre><code>https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_GenomicFeatures/download?path=%2F&amp;files=PLacZ.fasta   PLacZ
+</code></pre>
+<h3 id="petits-arn">Petits ARN</h3>
+<p>La liste ci-dessous peut-être directement importée dans votre serveur Galaxy. Attention à ne sélectionner uniquement que les lignes correspondant aux deux échantillons sur lesquels vous allez travailler et qui sont indiqués dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé dans l'onglet "petits ARN"</a>.</p>
+<pre><code>GLKD
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA28.fastqsanger.gz GLKD-ALBA28
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA29.fastqsanger.gz GLKD-ALBA29
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA30.fastqsanger.gz GLKD-ALBA30
+
+WT
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA25.fastqsanger.gz WT-ALBA25
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA26.fastqsanger.gz WT-ALBA26
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=ALBA27.fastqsanger.gz WT-ALBA27
+</code></pre>
+<h3 id="arn">ARN</h3>
+<p>La liste ci-dessous peut-être directement importée dans votre serveur Galaxy. Attention à ne sélectionner uniquement que les lignes correspondant aux deux échantillons sur lesquels vous allez travailler et qui sont indiqués dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">tableau partagé dans l'onglet "ARN"</a>.</p>
+<pre><code>GLKD
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA1.fastqsanger.gz   GLKD-ALBA1
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA2.fastqsanger.gz   GLKD-ALBA2
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA3.fastqsanger.gz   GLKD-ALBA3
+
+WT
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA4.fastqsanger.gz   WT-ALBA4
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA5.fastqsanger.gz   WT-ALBA5
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_RNAseqData/download?path=%2F&amp;files=ALBA6.fastqsanger.gz   WT-ALBA6
+</code></pre>
+<hr />
+<h2 id="amorces-de-qpcr">Amorces de qPCR</h2>
+<p>Vous pouvez visualiser les amorces que vous avez utilisé lors de vos quantifications par qPCR dans IGV en téléchargeant le fichier <a href="PCRprimers.gff">PCRprimers.gff</a>.</p>
+<hr />
+<h2 id="chip-seq">ChIP-seq</h2>
+<p>L'occupation de H3K9me2, H3K9me3 et Rhino (Rhi) a été déterminée par immunoprécipitation de la chromatine suivie de séquençage (ChIP-seq) à partir d'ovaires WT et d'ovaires Kdm3 GLKD.
+Les fichiers de couverture ci-dessous ont été obtenus à l'aide de l'outil <a href="https://deeptools.readthedocs.io/en/develop/content/tools/bamCompare.html">BamCompare</a> (Deeptools Galaxy version 3.3.2.0.0)  avec une taille de bin de 100 pb et le calcul de la différence des lectures IP input en rpm.</p>
+<pre><code>H3K9me2
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_H3K9me2_Ctrl.bigwig
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_H3K9me2_Kdm3GLKD.bigwig
+H3K9me3
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_H3K9me3_Ctrl.bigwig
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_H3K9me3_Kdm3GLKD.bigwig
+Rhino
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_Rhino_Ctrl.bigwig
+https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_ChIPseq/download?path=%2F&amp;files=ChIPseq_Rhino_Kdm3GLKD.bigwig
+</code></pre>
+<hr />
+<h2 id="locus-de-pirna">Locus de piRNA</h2>
+<p>Séquences fasta des piRNA clusters et du transgene lacZ cible.</p>
+<pre><code>https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=20A.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=38C_1.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=38C_2.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=38C_3.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=42AB.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=80F.fasta
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=flamenco.fasta 
+https://psilo.sorbonne-universite.fr/index.php/s/AG_Ressources/download?path=%2F&amp;files=PA92_TransgeneCible.fasta
+</code></pre>
+<p>Vous pouvez récupérer les coordonnées génomiques des piARN stockés sur la <a href="https://www.pirnadb.org/download/archive/gff_gtf">piRNAdb</a> aux formats GTF et GFF.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../igv/" class="btn btn-neutral float-left" title="3. IGV"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../annexes/" class="btn btn-neutral float-right" title="5. Annexes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../igv/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../annexes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>1. Petits ARN - Analyse des génomes 2023</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. Petits ARN";
+        var mkdocs_page_input_path = "srna.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Analyse des génomes 2023
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">1. Petits ARN</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#controle-qualite-des-lectures">Contrôle qualité des lectures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#suppression-des-sequences-des-adaptateurs">Suppression des séquences des adaptateurs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#analyse-des-sequences-surrepresentees">Analyse des séquences surreprésentées</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filtrage-des-contaminants">Filtrage des contaminants</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#selection-des-elements-biologiques-a-filtrer">Sélection des éléments biologiques à filtrer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#choix-des-parametres-dalignement">Choix des paramètres d'alignement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recuperation-des-banques-de-contaminants-a-filtrer">Récupération des banques de contaminants à filtrer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#utilisation-dun-workflow">Utilisation d'un workflow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alignement-des-lectures-sur-la-region-placz">Alignement des lectures sur la région PLacZ</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparaison-des-distributions-des-petits-arn-entre-conditions">Comparaison des distributions des petits ARN entre conditions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#obtention-des-pirna">Obtention des piRNA</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#selection-de-la-taille-des-petits-arn">Sélection de la taille des petits ARN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conserver-les-pirna-uniques">Conserver les piRNA "uniques"</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#analyse-des-pirna-uniques">Analyse des piRNA uniques</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#selection-des-10-premieres-bases-des-sequences">Sélection des 10 premières bases des séquences</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conversion-des-fichiers-fastq-en-fasta">Conversion des fichiers Fastq en fasta</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transformation-des-bases-t-en-u">Transformation des bases T en U</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#representer-graphiquement-la-distribution-des-bases">Représenter graphiquement la distribution des bases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compter-le-nombre-de-sequences-commencant-par-un-u">Compter le nombre de séquences commençant par un U</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rnaseq/">2. RNAseq</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../igv/">3. IGV</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ressources/">4. Ressources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../annexes/">5. Annexes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Analyse des génomes 2023</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">1. Petits ARN</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1-traitement-des-donnees-des-petits-arn">1. Traitement des données des petits ARN</h1>
+<div class="admonition attention">
+<p class="admonition-title">Objectif</p>
+<p>Le but de cette séance de Travaux Pratiques est d’effectuer le traitement des données du séquençage des petits ARN.</p>
+<p>À la fin de la séance vous devez pouvoir comparer les profils d’expression des petits ARN de lignées sauvages (WT) et mutantes pour le gène <em>Kdm3</em> (GLKD), et avoir caractérisé les piRNA.</p>
+</div>
+<div class="admonition hint">
+<p>Les questions posées tout au long de cette page sont là pour vous guider dans votre analyse, pour vous aider à comprendre ce que vous faites et ainsi mieux appréhender vos résultats. Elles ne sont pas la base de l’évaluation de votre travail aujourd'hui.</p>
+</div>
+<p>Vous allez partir de l'histoire que vous avez créé hier où se trouve les données de séquençage des petits ARN WT et GLKD (<a href="https://artbio.github.io/startbio/AnalyseGenomes_2023/Loading_data_in_galaxy/#5-dataset-collections">voir le tutoriel</a>).</p>
+<p>Vous pouvez retrouver les noms des deux échantillons sur lesquels vous aller travailler dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé accessible en ligne</a>.</p>
+<p>Les librairies ont été générées à l'aide des <a href="https://support.illumina.com/sequencing/sequencing_kits/truseq-small-rna-kit.html">kits de préparation de petits ARN TruSeq d'Illumina</a>.</p>
+<hr />
+<h2 id="controle-qualite-des-lectures">Contrôle qualité des lectures</h2>
+<div class="admonition note">
+<p class="admonition-title">FastQC</p>
+<p>Pour afficher plusieurs graphiques permettant d’évaluer de façon automatique la qualité des lectures obtenues, nous allons utiliser le logiciel <strong>FastQC</strong>. Il est disponible sur les principaux systèmes d’exploitation actuels (Windows, MacOS et Linux) et peut-être utilisé avec une interface graphique ou bien en ligne de commande. Vous pouvez télécharger l'outil et consulter son mode d’emploi <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">sur son site internet</a></p>
+</div>
+<p>Dans Galaxy vous allez utiliser l’outil <strong><em>FastQC Read Quality reports</em></strong>. Pensez à cliquer sur l'icône en forme de dossier pour accéder à votre collection.</p>
+<p>Cliquez sur "Execute" sans modifier les paramètres.</p>
+<p><img alt="FastQC" src="../img/srna/fastqc.png" title="FastQC" /></p>
+<p>Si aucune image ne s'affiche, rendez-vous dans les <a href="../annexes/#resoudre-les-problemes-daffichage-html-dans-galaxy">annexes</a> pour résoudre ce problème.</p>
+<p>En vous aidant de la notice d’utilisation du logiciel, regardez les résultats du contrôle de qualité effectué par FastQC sur votre fichier fastq.</p>
+<p>Reportez le "nombre lectures totales" et le "%GC" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Les lectures sont-elles de bonne qualité pour poursuivre l’analyse ?</li>
+<li>Pouvez-vous observer des biais particuliers à prendre en compte pour la suite ?</li>
+</ul>
+</div>
+<p>Vous avez la possibilité de renommer les collections en cliquant sur l'une d'entre elle et dans le nouvelle colonne qui s'ouvre à droite sur le crayon.</p>
+<p><img alt="Renommer une collection" src="../img/srna/rename_collection.png" title="Renommer une collection" /></p>
+<div class="admonition hint">
+<p>Vous pouvez supprimer, en cliquant sur l'icône en forme de poubelle (choisissez "Collections and elements"), les données brutes "FastQC on collection : RawData" car elle ne fait que reprendre les données de la page web sous une forme texte et nous n'allons pas en avoir besoin durant le TP. </p>
+</div>
+<hr />
+<h2 id="suppression-des-sequences-des-adaptateurs">Suppression des séquences des adaptateurs</h2>
+<p>Les séquences obtenues sont plus longues que celles des petits ARN que l’on veut étudier. Elles contiennent donc les séquences des adaptateurs situées en 3’. Vous allez réaliser une étape de <strong>clipping</strong> qui consiste à supprimer les adaptateurs présents dans les séquences.</p>
+<p>Vous allez également profiter de cette étape pour ne conserver que les séquences de tailles comprises entre 19 et 30, celles correspondants aux différentes populations de petits ARN que nous voulons étudier.</p>
+<p>Vous allez pour cela utiliser l’outil <strong><em>Clip adapter</em></strong>. Les réglages à modifier sont entourés en rouge sur la copie d'écran ci-dessous.</p>
+<p><img alt="Clipping des adaptateurs" src="../img/srna/clipping.png" title="Clipping des adaptateurs" /></p>
+<p>Sur les fichiers fastq obtenus en sortie de cette étape de clipping, relancez une analyse de la qualité des séquences avec l’outil <strong><em>FastQC</em></strong>.</p>
+<p>Reportez le "nombre lectures 19-30nt" et le "%GC" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>L’étape de clipping a-t-elle bien réalisé ce que vous souhaitiez ?</li>
+<li>Que pensez-vous de la distribution de taille des séquences ?</li>
+</ul>
+</div>
+<h3 id="analyse-des-sequences-surrepresentees">Analyse des séquences surreprésentées</h3>
+<p>Si vous avez envie de savoir d'où proviennent les séquences marquées comme "Overrepresented sequences" après cette étape. Vous pouvez effectuer un Blast contre le génome de la drosophile pour le savoir.</p>
+<p>Copiez la séquence la plus surreprésentée.</p>
+<p><img alt="Séquence surreprésentée" src="../img/srna/overrepresented_sequence.png" title="Séquence surreprésentée" /></p>
+<p>Puis collez là dans l'outil <a href="https://flybase.org/blast/">Blast de FlyBase</a>.</p>
+<p><img alt="Blast FlyBase" src="../img/srna/blast.png" title="Blast FlyBase" /></p>
+<p>Si l'annotation de la séquence cible n'est pas explicite, vous pouvez cliquer sur JBrowse pour le voir où se trouve le HSP (High-scoring Segment Pair) sur le génome.</p>
+<p><img alt="Annotation" src="../img/srna/blast_hsp.png" title="Annotation" /></p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<ul>
+<li>À votre avis à quoi correspond la séquence la plus surreprésentée que vous avez obtenue ?</li>
+</ul>
+</div>
+<hr />
+<h2 id="filtrage-des-contaminants">Filtrage des contaminants</h2>
+<h3 id="selection-des-elements-biologiques-a-filtrer">Sélection des éléments biologiques à filtrer</h3>
+<p>L’objectif de cette étape est de retirer de nos petits ARN certains éléments génomiques sur lesquels on ne veut pas travailler. Il s'agit des éléments suivants :</p>
+<ul>
+<li>miRNA : micro ARN</li>
+<li>miscRNA : small nuclear RNA (snRNA), small nucleolar RNA (snoRNA), et ARN ribosomique (rRNA)</li>
+<li>tRNA : ARN de transferts</li>
+</ul>
+<p>Pour ce TP vous allez utiliser la version 6.54 du génome de <em>Drosophila melanogaster</em> dont les fichiers de séquence au format fasta sont accessibles sur le <a href="https://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.54_FB2023_05/fasta/">site FTP de Flybase</a></p>
+<p>Reportez vous aux <a href="../annexes/#copier-des-fichiers-entre-histoires">annexes</a> pour savoir comment copier les données entre historiques des fichiers fasta dont vous avez besoin.</p>
+<h3 id="choix-des-parametres-dalignement">Choix des paramètres d'alignement</h3>
+<p>Pour effectuer ce filtrage, vous allez réaliser une série d’alignements avec le logiciel <strong>bowtie</strong> contre les différentes les banques fasta de ces éléments génomiques en ne gardant à chaque étape que les séquences qui ne se sont pas alignées.</p>
+<p>L’objectif est d’obtenir rapidement les d’alignements pour effectuer cette série de filtrages. En vous aidant de la <a href="http://bowtie-bio.sourceforge.net/manual.shtml">documentation du logiciel bowtie</a>, répondez aux questions ci-dessous.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Quelle est l'option du paramètre "alignment mode" qui va permettre d’accélérer la vitesse d'alignement ?</li>
+<li>Quel nombre de mismatch choisir pour filtrer au maximum les séquences contaminantes ?</li>
+</ul>
+</div>
+<p>Nous allons utiliser l’outil <strong><em>sR_bowtie</em></strong> de Galaxy sur les données clippées en alignant les lectures sur un fichier d’éléments du génome de la drosophile obtenu précédemment.</p>
+<p><img alt="Annotation" src="../img/srna/filtrage.png" title="Annotation" /></p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Quel paramètrage d'alignement allez vous choisir ?</li>
+</ul>
+</div>
+<h3 id="recuperation-des-banques-de-contaminants-a-filtrer">Récupération des banques de contaminants à filtrer</h3>
+<p>Reportez vous aux <a href="../annexes/#copier-des-fichiers-entre-histoires">annexes</a> pour savoir comment copier les données depuis l'histoire "References" dans celle en cours pour récupérer les séquences fasta suivantes :</p>
+<ul>
+<li>miRNA : dmel-r6.54-miRNA</li>
+<li>miscRNA : dmel-r6.54-miscRNA</li>
+<li>tRNA : dmel-r6.54-tRNA</li>
+</ul>
+<h3 id="utilisation-dun-workflow">Utilisation d'un workflow</h3>
+<p>Ces filtrages sont répétitifs. Vous allez utiliser un workflow pour lancer automatiquement les 3 étapes de filtration contre les miRNA, miscRNA et tRNA. </p>
+<p>Le workflow "sRNA clean-up" que vous allez utiliser est disponible <a href="https://psilo.sorbonne-universite.fr/index.php/s/Kdm3_smallRNAseqData/download?path=%2F&amp;files=Galaxy-Workflow-sRNA_clean-up.ga">en cliquant ici</a></p>
+<p><img alt="sRNA clean-up workflow" src="../img/srna/srna_cleanup_workflow.png" title="sRNA clean-up workflow" /></p>
+<p>Aidez-vous du tutoriel <a href="https://artbio.github.io/startbio/AnalyseGenomes_2023/Run_workflow/">Running a galaxy workflow</a> que vous avez vu hier et lancez le workflow sur les données clippées.</p>
+<p><img alt="Run sRNA clean-up workflow" src="../img/srna/run_cleanup_workflow.png" title="Run sRNA clean-up workflow" /></p>
+<p>Sur les fichiers fastq obtenus en sortie de ce filtrage, relancez une analyse de la qualité des séquences avec l’outil <strong><em>FastQC</em></strong>.</p>
+<p>N'oubliez pas de renommer chaque étape dans l'histoire Galaxy pour vous y retrouver plus facilement.</p>
+<p>Reportez le "nombre de lectures nettoyées" et leur "%GC" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<p>Reportez également le nombre de lectures alignées à chaque étape du filtrage. Attention ! ces informations ne se trouvent pas dans l'histoire. Pour les obtenir il faut aller dans le menu "Workflow" et en cliquant sur le workflow "sRNA clean-up" choisir "invocations"</p>
+<p><img alt="Workflow invocations" src="../img/srna/workflow_invocations.png" title="Workflow invocations" /></p>
+<p>Les différents lancement du workflow qui ont été effectués apparaissent dans une nouvelle fenêtre. Affichez les détails d'un lancement en cliquant sur le chevron en début de ligne puis sur les onglets "Details" puis "Steps". Cliquez ensuite sur les réglages de l'étape qui vous intéresse (icône en forme d'outil) puis sur "Output Dataset Collections", sur "Bowtie output" et enfin sur l'échantillon que vous voulez analyser. En déployant les résultats vous pouvez accéder pour vos échantillons aux sorties de l'outil d'alignement Bowtie.</p>
+<p><img alt="Workflow output" src="../img/srna/workflow_output.png" title="Workflow output selection" /></p>
+<hr />
+<h2 id="alignement-des-lectures-sur-la-region-placz">Alignement des lectures sur la région <em>PLacZ</em></h2>
+<p>Pour aller plus loin dans l’analyse des loci producteurs de petits ARN, vous allez aligner spécifiquement les séquences que vous avez obtenues sur celle du transgène <strong><em>PLacZ</em></strong>.</p>
+<p>Reportez vous aux <a href="../annexes/#copier-des-fichiers-entre-histoires">annexes</a> pour savoir comment copier les données entre historiques pour récupérer la séquence fasta de <em>PLacZ</em>.</p>
+<p>Vous allez utiliser l’outil <strong><em>sR_bowtie</em></strong> sur les données nettoyées précédentes en alignant les lectures sur la séquence de <em>PLacZ</em>. On cherche maintenant à obtenir des alignements à 1 seule position sur la séquence même si ils peuvent s'aligner à plusieurs endroits.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Quelle option de sRbowtie allez-vous choisir ?</li>
+<li>À quels paramètres du logiciel bowtie cette option correspond-elle ?</li>
+</ul>
+</div>
+<p>Lancez l’alignement une fois que vous avez déterminé les paramètres optimaux pour votre analyse.</p>
+<p><img alt="Alignement sur PLacZ" src="../img/srna/bowtie_placz.png" title="Alignement sur PLacZ" /></p>
+<div class="admonition hint">
+<p>La sortie standard et l’erreur standard sont accessibles dans Galaxy. Pour cela vous devez cliquer dans votre jeu de données sur l’icône d’information (i). La page qui s’affiche vous donne accès aux paramètres de lancement de l’outil utilisé et aux différentes sorties produites.</p>
+</div>
+<p><img alt="Sortie et erreur standard" src="../img/srna/sortie_standard.png" title="Sortie et erreur standard" /></p>
+<hr />
+<h2 id="comparaison-des-distributions-des-petits-arn-entre-conditions">Comparaison des distributions des petits ARN entre conditions</h2>
+<p>Vous allez maintenant comparer la distribution des petits ARN sur PLacZ entre les conditions WT et GLKD.</p>
+<p>Vous allez réaliser des graphiques et quantifier la répartition des 2 types de petits ARN (siRNA et piRNA) alignés sur la séquence de PLacZ à partir des lectures de vos différents échantillons. Pour cela vous utiliserez l’outil <strong><em>small_rna_maps</em></strong> sur chacun de vos fichiers d’alignement en prenant soin d’indiquer pour chacun le facteur de normalisation permettant de corriger les lectures calculés dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p>Vous pouvez accéder à un élément d'une collection en cliquant sur l'icône de dossier "Browse dataset" ouvert sur la droite du sélecteur de fichier.</p>
+</div>
+<p><img alt="Distribution des lectures par taille" src="../img/srna/small_rna_maps.png" title="Distribution des lectures par taille" /></p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Quelle interprétation faites-vous des histogrammes que vous obtenez ?</li>
+</ul>
+</div>
+<hr />
+<h2 id="obtention-des-pirna">Obtention des piRNA</h2>
+<h3 id="selection-de-la-taille-des-petits-arn">Sélection de la taille des petits ARN</h3>
+<p>Les séquences de piRNA sont comprises entre 23 et 29 nucéotides. Vous allez réutiliser l’outil <strong><em>Clip adapter</em></strong>. </p>
+<p><img alt="Clipping des adaptateurs" src="../img/srna/clipping2.png" title="Clipping des adaptateurs" /></p>
+<p>Sur les fichiers fastq obtenus en sortie de cette étape, relancez une analyse de la qualité des séquences avec l’outil <strong><em>FastQC</em></strong> afin de vous assurer que tout c'est passé comme vous l'attendiez.</p>
+<p>Reportez le "nombre de lectures 23-29nt" et le "%GC" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<h3 id="conserver-les-pirna-uniques">Conserver les piRNA "uniques"</h3>
+<p>Le but est maintenant de conserver les piRNA les plus "récents". Pour cela on va sélectionner les piRNA qui s'alignent de façon unique sur le génome sans aucun mismatch.</p>
+<p>On utilise l’outil <strong><em>sR_bowtie</em></strong> sur les piRNA de 23-29 nt. On cherche à obtenir des alignements uniques sans ambiguïtés et sans mismatch.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Quelle option de sRbowtie allez-vous choisir ?</li>
+<li>À quels paramètres du logiciel bowtie cette option correspond-elle ?</li>
+</ul>
+</div>
+<p>Lancez l’alignement une fois que vous avez déterminé les paramètres optimaux pour votre analyse.</p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Vous voulez récupérer les fichiers Fastq de ces piRNA uniques. Il ne faut pas oublier de sélectionner "Additional fasta output : aligned" dans les options de l'outil.</p>
+</div>
+<p><img alt="Sélection des piRNA uniques" src="../img/srna/pirna_uniques.png" title="Sélection des piRNA uniques" /></p>
+<p>Sur les fichiers fastq des piRNA uniques relancez une analyse de la qualité des séquences avec l’outil <strong><em>FastQC</em></strong>.</p>
+<p>Reportez le "nombre de lectures piRNA uniques" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<hr />
+<h2 id="analyse-des-pirna-uniques">Analyse des piRNA uniques</h2>
+<p>En principe la première position d'un piRNA commence majoritairement par une base Uracile. Vous allez vérifier si vos séquences ont cette caractéristique.</p>
+<h3 id="selection-des-10-premieres-bases-des-sequences">Sélection des 10 premières bases des séquences</h3>
+<p>Vous allez utiliser l'outil <strong>Trimmomatic</strong> sur les piRNA uniques pour couper les séquences à 10 nucléotides.</p>
+<p><img alt="Trimmomatic" src="../img/srna/trimmomatic.png" title="Trimmomatic" /></p>
+<h3 id="conversion-des-fichiers-fastq-en-fasta">Conversion des fichiers Fastq en fasta</h3>
+<p>Pour cette étape vous utiliserez l'outil <strong>sequence_format_converter</strong>. En effet, l'outil qui représente graphiquement la distribution des bases n'accepte pas les fichiers Fastq en entrée. Seulement les fichiers Fasta.</p>
+<p><img alt="Fastq to Fasta" src="../img/srna/sequence_format_converter.png" title="Fastq to Fasta" /></p>
+<h3 id="transformation-des-bases-t-en-u">Transformation des bases T en U</h3>
+<p>Vous avez séquencé de l'ADN mais nous voulons comparer les séquences originales des piRNA. Pour cela vous devez convertir les bases T en U à l'aide de l'outil <strong>Regex Find And Replace</strong>.</p>
+<p><img alt="Conversion T en U" src="../img/srna/convertTtoU.png" title="Conversion T en U" /></p>
+<h3 id="representer-graphiquement-la-distribution-des-bases">Représenter graphiquement la distribution des bases</h3>
+<p>Vous allez réaliser un "Sequence logo" permettant de représenter la probabilité de trouver chaque base le long des 10 nucléotides de la séquence. Pour en savoir plus vous pouvez consulter le site <a href="https://weblogo.threeplusone.com/">WebLogo</a>.</p>
+<p>Utiliser l'outil <strong>Sequence Logo</strong> pour obtenir ce graphique.</p>
+<p><img alt="Sequence Logo" src="../img/srna/sequence_logo.png" title="Sequence Logo" /></p>
+<h3 id="compter-le-nombre-de-sequences-commencant-par-un-u">Compter le nombre de séquences commençant par un U</h3>
+<p>Pour finir vous allez compter le nombre de séquences commençant par U. Pour cela vous utiliserez l'outil <strong>Search in textfiles</strong>.</p>
+<p><img alt="Compter les U" src="../img/srna/comptage_u.png" title="Compter les U" /></p>
+<p>Reportez le "nombre séquences commençant par un U" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=243437883">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<p>Les petis ARN que vous avez sélectionnés sont-ils bien des piRNA ?</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Accueil"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rnaseq/" class="btn btn-neutral float-right" title="2. RNAseq">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../rnaseq/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

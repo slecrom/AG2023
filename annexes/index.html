@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>5. Annexes - Analyse des génomes 2023</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5. Annexes";
+        var mkdocs_page_input_path = "annexes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Analyse des génomes 2023
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../srna/">1. Petits ARN</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rnaseq/">2. RNAseq</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../igv/">3. IGV</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ressources/">4. Ressources</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">5. Annexes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#modifier-le-type-des-donnees">Modifier le type des données</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resoudre-les-problemes-daffichage-html-dans-galaxy">Résoudre les problèmes d'affichage HTML dans Galaxy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copier-des-fichiers-entre-histoires">Copier des fichiers entre histoires</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#partage-de-fichiers-dans-galaxy">Partage de fichiers dans Galaxy</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#isoler-les-donnees-a-partager-dans-une-histoire-dedidee">Isoler les données à partager dans une histoire dédidée</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#partager-votre-histoire">Partager votre histoire</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#importer-une-histoire-partagee">Importer une histoire partagée</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Analyse des génomes 2023</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">5. Annexes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="5-annexes">5. Annexes</h1>
+<p>Cette page regroupe différentes solutions utilisées dans Galaxy au cours des travaux pratiques </p>
+<!---
+
+--------------------------------------------------------------------------------
+## Commandes du programme screen
+
+Screen est un programme linux utile qui crée, attache, détache ou rattache des sessions shell "virtuelles". Screen permet d'exécuter des processus linux simultanés dans des environnements isolés qui peuvent être mis en arrière-plan tout en travaillant avec la console à d'autres tâches.
+
+Commandes utiles :
+
+- `screen -ls` liste toutes les sessions screen disponibles, attachées (actuellement actives) ou détachées en arrière-plan ;
+- `screen -r <session>` rattache une session écran détachée ;
+- `CtrlA puis D` détache la session active ;
+- Tapez `exit` pour mettre fin à la session active ;
+- `screen -S <session>` crée une nouvelle session.
+
+
+--------------------------------------------------------------------------------
+## Gestion du serveur Galaxy
+
+- `galaxyctl status` donne l'état du serveur galaxy ;
+- `galaxyctl start` si d'aventure le serveur galaxy est arrêté, mais cela ne devrait pas arriver ;
+- `galaxyctl stop` pour arrêter le serveur, mais il n'y a en principe pas de raison de le faire ;
+- `galaxyctl restart` pour redémarrer le serveur, utile si besoin de mettre à jour des références, des changements de préférence, etc. 
+
+Au redémarrage d'une machine virtuelle (VM) suspendue, on retrouve Galaxy dans l'état où il était lors de sa suspension. À noter cependant que si on suspend la VM au milieu d'un job Galaxy en exécution cela mettra le job en question en erreur.
+
+-->
+
+<hr />
+<h2 id="modifier-le-type-des-donnees">Modifier le type des données</h2>
+<p>Il peut arriver qu'un fichier, pourtant présent dans votre historique, ne soit pas visible en entrée d'un outil Galaxy. Par exemple il peut arriver que le fichier fastq que vous avez chargé dans votre historique n’apparait pas comme disponible dans l’outil Bowtie.</p>
+<p>Pour régler ce problème, vous devez réaliser une conversion du type de fichier. L’outil attend un fichier au format fastqsanger et il est pour le moment seulement fastq.gz. </p>
+<p>Pour changer le type d’un fichier, il faut cliquer sur l’icône en forme de crayon. Puis aller dans l’onglet « Datatype ».</p>
+<p><img alt="Changer le type des données" src="../img/annexes/change_datatype1.png" title="Changer le type des données" /></p>
+<p>Dans le menu déroulant remplacer « fastq.gz », le type actuel, par « fastqsanger.gz ». Puis cliquer sur "Changer le format des données"</p>
+<p><img alt="Changer le type des données" src="../img/annexes/change_datatype2.png" title="Changer le type des données" /></p>
+<hr />
+<h2 id="resoudre-les-problemes-daffichage-html-dans-galaxy">Résoudre les problèmes d'affichage HTML dans Galaxy</h2>
+<p>Il est possible que les sorties de certains outils ne s'affichent pas dans Galaxy comme par exemple FastQC.</p>
+<p>Pour les afficher il faut les autoriser spécifiquement :</p>
+<ol>
+<li>Aller dans le menu "Admin"</li>
+<li>Dans le menu de gauche, dans la partie "Tool Management", choisir "Manage Allowlist"</li>
+<li>Rechercher "FastQC" dans la liste, cliquer sur n'importe quelle case de la ligne. Elle va disparaître et s'afficher dans l'onglet "HTML Rendered"</li>
+</ol>
+<p><img alt="Whitelist" src="../img/annexes/whitelist.png" title="Autoriser l'affichage HTML" /></p>
+<p>Ce système protège l'injection de code dans les pages HTML.</p>
+<hr />
+<h2 id="copier-des-fichiers-entre-histoires">Copier des fichiers entre histoires</h2>
+<p>Pour utiliser dans votre histoire actuel un fichier situé dans un autre histoire il faut procéder de la façon suivante :</p>
+<ol>
+<li>Choisir "Copier les jeux de données" depuis le menu "roue crantée" en haut à droite</li>
+<li>Sélectionner les fichiers qui vous intéressent depuis l'histoire source vers l'histoire de destination, vous pouvez aussi indiquer le nom d'une nouvelle histoire</li>
+<li>Cliquez sur "Copy History Items"</li>
+</ol>
+<p><img alt="Copie entre histoires" src="../img/annexes/history_copie.png" title="Copie de données entre histoires" /></p>
+<hr />
+<h2 id="partage-de-fichiers-dans-galaxy">Partage de fichiers dans Galaxy</h2>
+<h3 id="isoler-les-donnees-a-partager-dans-une-histoire-dedidee">Isoler les données à partager dans une histoire dédidée</h3>
+<p>La première étape consiste à copier les données à partager dans une nouvelle histoire.</p>
+<p><img alt="Nouvelle histoire" src="../img/annexes/history_new.png" title="Nouvelle histoire" /></p>
+<p>Sélectionnez cette nouvelle histoire, supprimez la collection, affichez les éléments invisibles et rendez-les visibles</p>
+<p><img alt="Suppression d'une collection" src="../img/annexes/history_collection_delete.png" title="Suppression d'une collection" />
+<img alt="Affichage des éléments invisibles" src="../img/annexes/history_unhidde.png" title="Affichage des éléments invisibles" /></p>
+<p>Renommez vos éléments pour les rendre plus facile à trouver.</p>
+<h3 id="partager-votre-histoire">Partager votre histoire</h3>
+<p>Pour partager votre histoire, il faut tout d'abord sélectionner « Partager et Publier » dans le menu d'option tout en haut à droite puis choisir « Make History Accessible ».</p>
+<p><img alt="Partage d'historique" src="../img/annexes/history_share1.png" title="Partage d'historique" />
+<img alt="Partage d'historique" src="../img/annexes/history_share2.png" title="Partage d'historique" /></p>
+<p>Retournez de nouveau dans le menu en haut à droite, cliquez sur « Exporter l’historique dans un fichier » puis sur le lien "Click here to generate a new archive for this history".</p>
+<p><img alt="Export d'historique" src="../img/annexes/history_export.png" title="Export d'historique" /></p>
+<p><strong>Conserver ce lien car c'est lui qui vous permet de partager votre histoire avec d'autres serveurs Galaxy.</strong> Vous pouvez aussi cliquer sur le lien pour récupérer l'historique en local. Attention les données génomiques peuvent être volumineuses !</p>
+<p><img alt="URL de l'historique" src="../img/annexes/history_url.png" title="URL de l'historique" /></p>
+<h3 id="importer-une-histoire-partagee">Importer une histoire partagée</h3>
+<p>Pour importer une histoire partagé, allez dans le menu "Utilisateur" puis choisir "Histories". Cliquez sur "Import history" en haut à droite.</p>
+<p><img alt="Import d'histoire" src="../img/annexes/history_import.png" title="Import d'histoire" /></p>
+<p>Sélectionnez "Export URL from another Galaxy instance" puis collez l'URL de l'histoire que vous voulez récupérer dans le champ "Archived History URL".</p>
+<p><img alt="Import d'histoire" src="../img/annexes/history_upload1.png" title="Import d'histoire" />
+<img alt="Import d'histoire" src="../img/annexes/history_upload2.png" title="Import d'histoire" /></p>
+<p>Une fois importé, pensez à le renommer pour lui donner un nom plus explicite.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ressources/" class="btn btn-neutral float-left" title="4. Ressources"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ressources/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

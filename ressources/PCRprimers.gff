@@ -1,0 +1,7 @@
+X	Blast+	primer_match	4427399	4427497	.	.	.	"Name=Primer-bi; ID=FBgn0000179"
+X	Blast+	primer_match	16212259	16212349	.	.	.	"Name=Primer-disco; ID=FBgn0000459"
+3R	Blast+	primer_match	6663309	6663394	.	.	.	"Name=Primer-lab; ID=FBgn0002522"
+X	Blast+	primer_match	8758700	8758777	.	.	.	"Name=Primer-Lim1; ID=FBgn0026411"
+2L	Blast+	primer_match	21834841	21834920	.	.	.	"Name=Primer-tsh; ID=FBgn0003866"
+3R	Blast+	primer_match	30045580	30045443	.	.	.	"Name=Primer-Rpl32; ID=FBgn0002626"
+3R	Blast+	primer_match	9518994	9519082	.	.	.	"Name=Primer-Kdm3; ID=FBgn0037703"

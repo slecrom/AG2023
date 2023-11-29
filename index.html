@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Analyse des génomes 2023</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Accueil";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Analyse des génomes 2023
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Accueil</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="srna/">1. Petits ARN</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="rnaseq/">2. RNAseq</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="igv/">3. IGV</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ressources/">4. Ressources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="annexes/">5. Annexes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Analyse des génomes 2023</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Accueil</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="genetique-de-lepigenetique-chez-la-drosophile-des-arn-petits-et-grands-pour-la-defense-de-lintegrite-du-genome">Génétique de l’épigénétique chez la drosophile : des ARN (petits et grands) pour la défense de l’intégrité du génome</h1>
+<p><strong>Contenu du site</strong></p>
+<ol>
+<li><a href="srna/">Traitement des données des petits ARN</a></li>
+<li><a href="rnaseq/">Traitement des données de RNA-seq</a></li>
+<li><a href="igv/">Visualisation des résultats obtenus</a></li>
+<li><a href="ressources/">Données ressources</a></li>
+<li><a href="annexes/">Annexes</a></li>
+</ol>
+<p>Pour réaliser ces analyses nous allons utiliser l’outil Galaxy. Il s’agit d’une plateforme basée sur un système de serveur Web ouvert sur lequel vous pouvez effectuer en ligne un certain nombre de traitements sur vos données. Le projet Galaxy dispose d’un <a href="https://usegalaxy.org/">site principal</a>.</p>
+<p>Vous pouvez également trouver d’autres miroirs du site principal de Galaxy adapté à diverses communautés, chacune ayant choisi d’ajouter au sein du système ces propres modules. Une <a href="https://galaxyproject.org/use/">liste des principaux miroirs et de leurs communautés</a> est disponible en ligne.</p>
+<p>Nous démarrons le TP là où il a été laissé hier. Voici le lien <a href="https://artbio.github.io/startbio/AnalyseGenomes_2023/outline/">vers la documentation Github faite par ARTbio</a></p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Dans Galaxy un peu de discipline s’impose. Si le système assure un suivi complet de tout ce que vous faites grâce à des numéros d’identification uniques de toutes les données produites, cela peut devenir compliqué à suivre si vous relancez certaines étapes plusieurs fois.
+Nous vous encourageons à changer le nom de vos attributs pour leur donner un nom explicite (mais de préférence court) en cliquant sur le bouton en forme de crayon "Edit attributes", en modifiant le champs "Name" et en cliquant sur "Save".</p>
+</div>
+<p>Pour rappel voici le schéma des croisements utilisés pendant le TP :</p>
+<p><img alt="Croisements" src="img/croisements.png" title="Croisements" /></p>
+<p><strong>Vademecum</strong></p>
+<ul>
+<li><strong>+</strong> : chromosome sauvage</li>
+<li><strong><em>sh-gène</em></strong> : transgène contenant un small hairpin (sh) contre un gène (<em>white, Rhino, Kdm3</em>) sous le contrôle d'une séquence UAS.</li>
+<li><strong><em>nos Gal4</em></strong> : le gène Gal4 est transcrit sous le contrôle du promoteur du gène <em>nanos</em> (<em>nos</em>) exprimé dans les cellules de la lignée germinale de drosophile (cellules nourricières). Gal4 permet donc l'expression des transgènes <em>sh-x</em>.</li>
+<li><strong><em>BX2</em></strong> : lignée ou locus contenant 7 transgènes <em>P</em> insérés en tandem. Ces transgènes possèdent les séquences de <em>lacZ</em>. </li>
+<li><strong><em>BX2OFF</em></strong> : allèle de <em>BX2</em> ne produisant pas de piRNA, <em>BX2ON</em> : allèle de <em>BX2</em> activé pour la production de piRNAs, on parle de conversion épigénétique stable : paramutation. Cet allèle produit donc des piRNAs de <em>lacZ</em>.</li>
+<li><strong><em>BX2?</em></strong> : on ne connait pas l'état épigénétique de <em>BX2</em>, on va le tester.</li>
+<li><strong><em>Cy</em></strong> : chromosome balanceur du chromosome 2 porteur d'une mutation dominante qui provoque des ailes recourbées. [Cy+] et [Cy] : il s'agit des phénotypes : + : sauvage, les ailes sont donc droites et <em>Cy</em> les ailes sont recourbées</li>
+<li><strong><em>Cy Roi</em></strong> : un autre chromosome balanceur porteur en plus de <em>Cy</em>, une mutation <em>Roi</em> qui induit les yeux rugueux</li>
+<li><strong><em>PLacZ</em></strong> : on parlera également de transgène cible. C'est un transgène P exprimant le gène <em>lacZ</em> sous le contrôle d'un promoteur exprimé dans les cellules nourricières. Ce transgène nous permet de tester fonctionnellement l'état épigénétique de <em>BX2</em>. Si <em>BX2</em> est activé (<em>BX2ON</em>), des piRNAs de <em>lacZ</em> sont synthétisés qui iront éteindre l'expression du transgène cible.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="srna/" class="btn btn-neutral float-right" title="1. Petits ARN">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="srna/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2023-11-29 09:14:49.574164+00:00
+-->

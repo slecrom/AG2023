@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>2. RNAseq - Analyse des génomes 2023</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. RNAseq";
+        var mkdocs_page_input_path = "rnaseq.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Analyse des génomes 2023
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../srna/">1. Petits ARN</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">2. RNAseq</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#controle-qualite-des-lectures">Contrôle qualité des lectures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alignement-des-lectures-sur-le-genome-de-la-drosophile">Alignement des lectures sur le génome de la drosophile</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#test-des-parametres-dalignement">Test des paramètres d'alignement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alignements-des-lectures-des-echantillons-glkd-et-wt">Alignements des lectures des échantillons GLKD et WT</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conversion-des-fichiers-sam">Conversion des fichiers SAM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mesure-des-niveaux-dexpression">Mesure des niveaux d'expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#analyse-differentielle">Analyse différentielle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#visualisation-sous-forme-de-volcano-plot">Visualisation sous forme de volcano plot</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../igv/">3. IGV</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ressources/">4. Ressources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../annexes/">5. Annexes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Analyse des génomes 2023</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">2. RNAseq</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2-traitement-des-donnees-de-rna-seq">2. Traitement des données de RNA-seq</h1>
+<div class="admonition danger">
+<p class="admonition-title">Compte rendu des résultats</p>
+<p>Je vous demande de m'envoyer en message direct dans Slack à la fin de la scéance le cahier de manipulation électronique (fichier texte) dans lequel sont décrites les étapes que vous avez effectuées pendant ce TP. L’objectif est que la personne qui va relire ce document soit capable de reproduire ce que vous avez fait et obtenir les mêmes résultats que vous.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Objectif</p>
+<p>Le but de cette séance de Travaux Pratiques, est de regarder l’expression différentielle des transcrits en condition GLKD en comparaison avec la condition WT.</p>
+</div>
+<div class="admonition hint">
+<p>Les questions posées tout au long de cette page sont là pour vous guider dans votre analyse, pour vous aider à comprendre ce que vous faites et ainsi mieux appréhender vos résultats. <strong>Les réponses que vous donnerez dans votre cahier seront aussi utilisées pour l’évaluation de votre travail.</strong></p>
+</div>
+<p>Vous allez partir de l'historique que vous avez créé où se trouve les données de séquençage des ARN WT et GLKD (<a href="https://artbio.github.io/startbio/AnalyseGenomes_2023/Loading_data_in_galaxy/#5-dataset-collections">voir le tutoriel</a>).</p>
+<p>Vous pouvez retrouver les noms des deux échantillons sur lesquels vous aller travailler dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">tableau partagé accessible en ligne</a>.</p>
+<p>Les librairies ont été préparées à l'aide du protocole <a href="https://support.illumina.com/sequencing/sequencing_kits/illumina-stranded-total-rna-ligation-ribo-zero-plus.html">RNA RiboZero Stranded d'Illumina</a>.</p>
+<hr />
+<h2 id="controle-qualite-des-lectures">Contrôle qualité des lectures</h2>
+<p>Comme dans la partie sur les <a href="../srna/#controle-qualite-des-lectures">petits ARN</a>, regardez les résultats du contrôle de qualité effectué par FastQC sur les fichiers fastq pour les 2 échantillons.</p>
+<p>Reportez le "nombre lectures totales" et le "%GC" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Les lectures sont-elles de bonne qualité pour poursuivre vos analyses ?</li>
+<li>Pouvez-vous observer des biais particuliers à prendre en compte pour la suite ?</li>
+</ul>
+</div>
+<hr />
+<h2 id="alignement-des-lectures-sur-le-genome-de-la-drosophile">Alignement des lectures sur le génome de la drosophile</h2>
+<p>Vous allez utiliser bowtie pour réaliser l’alignement des lectures obtenues sur le génome de la drosophile. Le but ici est d’obtenir plus de lectures qui s’alignent car les fragments sont plus longs que pour les petits ARN.</p>
+<p><a href="http://bowtie-bio.sourceforge.net/manual.shtml">Documentation du logiciel bowtie</a></p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Quels sont les paramètres et les options que vous choisiriez pour obtenir le plus de lectures qui s'alignent afin de compter le nombre de transcrits en évitant les ambiguïtés ?</li>
+</ul>
+</div>
+<h3 id="test-des-parametres-dalignement">Test des paramètres d'alignement</h3>
+<p>Ouvrez le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=871313255">tableau partagé</a> dans une nouvelle fenêtre de votre navigateur. Rendez-vous dans l'onglet "Test alignement RNAseq".</p>
+<p>Indiquez votre prénom sur la ligne des paramètres de mapping que vous voulez tester.</p>
+<p>Vous allez travailler sur l'échantillon <em>Test Mapping</em> présent dans votre histoire.</p>
+<p>Vous allez utiliser l’outil <strong><em>Map with Bowtie for Illumina</em></strong> sur les données brutes de l'échantillon <em>Test Mapping</em> en alignant les lectures sur le génome de référence de la drosophile pour tester différents paramètres d'alignement.</p>
+<p>En cas de soucis d'affichage des données en entrée de l'outil Bowtie, reportez vous aux <a href="../annexes/#modifier-le-type-des-donnees">annexes</a> pour savoir comment changer le type des données.</p>
+<p><img alt="Alignement avec Bowtie" src="../img/rna/bowtie1.png" title="Alignement avec Bowtie" />
+<img alt="Alignement avec Bowtie" src="../img/rna/bowtie2.png" title="Alignement avec Bowtie" />
+<img alt="Alignement avec Bowtie" src="../img/rna/bowtie3.png" title="Alignement avec Bowtie" />
+<img alt="Alignement avec Bowtie" src="../img/rna/bowtie4.png" title="Alignement avec Bowtie" /></p>
+<p>Une fois l'alignement effectué, indiquez le nombre, le pourcentage de lectures alignées et le temps mis par le programme à s'exécuter dans l'<a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=871313255">onglet "Test alignement RNAseq" du tableau partagé</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Suite à ces tests quels sont les paramètres que vous allez choisir pour aligner vos échantillons ?</li>
+</ul>
+</div>
+<p>Reporter ces paramètres dans l'<a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">onglet "ARN" du tableau partagé</a>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Vos paramètres doivent être identiques pour vos deux échantillons !</p>
+</div>
+<h3 id="alignements-des-lectures-des-echantillons-glkd-et-wt">Alignements des lectures des échantillons GLKD et WT</h3>
+<p>Maintenant que vous avez déterminé les options qui vous paraissent les plus pertinentes à utiliser, lancez l’alignement de votre collection de vos deux échantillons d'ARN à l'aide de l’outil <strong><em>Map with Bowtie for Illumina</em></strong>.</p>
+<p><img alt="Alignement avec Bowtie" src="../img/rna/bowtie_rna.png" title="Alignement avec Bowtie" /></p>
+<p>Reportez le "nombre d'alignements" et vos paramètres dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">tableau partagé</a>.</p>
+<div class="admonition hint">
+<p>Les paramètres de lancement du job sont accessibles dans Galaxy. Pour cela vous devez cliquer dans votre jeu de données sur l’icône d’information (i). La page qui s’affiche vous donne accès aux paramètres de lancement de l’outil utilisé.</p>
+</div>
+<hr />
+<h2 id="conversion-des-fichiers-sam">Conversion des fichiers SAM</h2>
+<p>Vous allez effectuer la conversion des fichiers SAM en BAM en éliminant les lectures qui ne se sont pas alignées, puis en triant les alignements suivant les coordonnées chromosomiques du génome de référence. Cette étape permet non seulement de réduire la taille du fichier d'alignement mais aussi de faciliter sa lecture par les navigateurs de génome (Genome Browser).</p>
+<p>Pour cela vous allez utiliser l’outil <strong><em>Samtools view</em></strong>.</p>
+<p><img alt="Conversion et filtrage SAM" src="../img/rna/sam-filter-bam1.png" title="Conversion et filtrage SAM" />
+<img alt="Conversion et filtrage SAM" src="../img/rna/sam-filter-bam2.png" title="Conversion et filtrage SAM" /></p>
+<hr />
+<h2 id="mesure-des-niveaux-dexpression">Mesure des niveaux d'expression</h2>
+<p>Afin de déterminer la couverture en lectures de chacun des gènes de la drosophile, vous allez utiliser l’outil <strong>featureCounts</strong> dont la <a href="https://www.rdocumentation.org/packages/Rsubread/versions/1.22.2/topics/featureCounts">documentation est disponible en ligne</a>.</p>
+<p>Mais avant vous devez copier le fichier d’annotation du génome de la Drosophile au format GTF depuis l'historique "References" comme indiqué en <a href="../annexes/#copier-des-fichiers-entre-histoires">annexe</a> .</p>
+<div class="admonition note">
+<p class="admonition-title">Le format GTF/GFF</p>
+<p>Le format GTF/GFF est un format de fichier standard utilisé pour stocker les informations d’annotation d’un génome dans un fichier texte. GTF signifie Generic Transfer Format. Les fichiers GTF sont des fichiers tabulés de 9 colonnes contenant du texte simple. <a href="https://www.ensembl.org/info/website/upload/gff.html">Les spécifications détaillées de ce format sont disponibles en ligne</a>.</p>
+</div>
+<p>Le décompte des alignements va se faire sur le fichier BAM filtré et trié que vous avez généré à l’étape précédente. Pour cela vous utiliserez l’outil <strong><em>featureCounts</em></strong> installé dans Galaxy en sélectionnant "Stranded (Reverse)". </p>
+<p><img alt="featureCounts" src="../img/rna/featurecounts.png" title="featureCounts" /></p>
+<p>Reportez le "nombre de lectures comptées" dans le <a href="https://docs.google.com/spreadsheets/d/1y-uBdR2TVZUIbNjM-RPxKXeMFn0OD8izTTmc3xnEFjE/edit#gid=418538100">tableau partagé</a>.</p>
+<hr />
+<h2 id="analyse-differentielle">Analyse différentielle</h2>
+<p>Vous allez maintenant comparer les niveaux d’expression des gènes entre vos 2 conditions à l’aide des 3 réplicats de chaque condition. Pour cela vous devez d’abord récupérer les fichiers de comptage des autres échantillons qu’il vous manque.</p>
+<p>Reportez vous aux <a href="../annexes/#partage-de-fichiers-dans-galaxy">annexes</a> pour savoir comment partager des données entre serveurs Galaxy et récupérer les fichiers de comptage qu'ils vous manquent dans votre histoire.</p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Pour que l'analyse fonctionnelle marche, vous devez récupérer les résultats de comptage dont l'alignement a été effectué avec les mêmes paramètres que les votre. Si vous ne le faite pas vous risquez une confusion des effets au moment de l'analyse statistique.</p>
+</div>
+<p>Ensuite vous allez utiliser l’outil <strong><em>DESeq2</em></strong> pour effectuer l’analyse différentielle. Il se base sur le <a href="http://bioconductor.org/packages/release/bioc/html/DESeq2.html">package R DESeq2</a>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Les fichiers qui sont dans vos collections ne sont pas visibles de la même façon que ceux qui vous avez récupérés. Il faut soit rendre visible vos échantillons dans vos collections soit supprimer la collection des comptages pour les faire apparaître.</p>
+</div>
+<div class="admonition hint">
+<p>Le mieux est de créer 2 collections "featureCounts", l'une pour les échantillons WT et l'autre pour les GLKD.</p>
+</div>
+<p>Vous devez indiquer à l’outil quels sont les échantillons à rattacher à chaque condition (facteur), puis lancer l’analyse.</p>
+<p><img alt="DESeq2" src="../img/rna/deseq2a.png" title="DESeq2" />
+<img alt="DESeq2" src="../img/rna/deseq2b.png" title="DESeq2" /></p>
+<div class="admonition hint">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>L’étape d’analyse différentielle s’est elle bien déroulée ?</li>
+</ul>
+</div>
+<div class="admonition hint">
+<p>Si vous avez envie d'aller plus loin avec la visualisation des données sur le MA-plot, l'<a href="https://rpkgs.datanovia.com/ggpubr/reference/ggmaplot.html">outil ggmaplot</a> permet dans R d'afficher des annotations sur la graphique.</p>
+</div>
+<h3 id="visualisation-sous-forme-de-volcano-plot">Visualisation sous forme de volcano plot</h3>
+<p>Pour aller plus loin dans la visualisation vous allez réaliser un volcano plot sur vos résultats grâce à l'outil <strong><em>Volcano Plot</em></strong>.
+Attention à bien faire correspondre les colonnes demandées au format de sortie de DESeq2.</p>
+<p><img alt="Volcano plot" src="../img/rna/volcano_plot.png" title="Volcano plot" /></p>
+<p><img alt="Volcano plot" src="../img/rna/volcano_result.png" title="Volcano result" /></p>
+<p>Un <a href="https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/rna-seq-viz-with-volcanoplot/tutorial.html">tutoriel</a> très bien fait vous permet d'aller plus loin avec cet outil.</p>
+<p>Par exemple voici comment visualiser sur le volcano plot la liste des gènes cibles des amorces que vous avez utilisés en qPCR.</p>
+<p>Comme vous l'avez fait pour <a href="https://artbio.github.io/startbio/AnalyseGenomes_2023/Preparing_reference/#a-simplify-fasta-headers">la liste des chromosomes de la drosophile</a>, créez la liste des noms de gènes cibles de vos amorces de qPRC dans votre historique Galaxy. Appelez la "Cibles PCR". <strong>Indiquez "tabular" pour type de données.</strong></p>
+<p>Voici la liste des gènes</p>
+<pre><code>FlyBase ID
+FBgn0000179
+FBgn0000459
+FBgn0002522
+FBgn0026411
+FBgn0003866
+FBgn0002626
+FBgn0037703
+</code></pre>
+<p>Relancez l'outil <strong><em>Volcano Plot</em></strong> avec les réglages ci-dessous.</p>
+<p><img alt="Volcano plot" src="../img/rna/volcano_plot2.png" title="Volcano plot" /></p>
+<p><img alt="Volcano plot" src="../img/rna/volcano_result2.png" title="Volcano result" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../srna/" class="btn btn-neutral float-left" title="1. Petits ARN"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../igv/" class="btn btn-neutral float-right" title="3. IGV">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../srna/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../igv/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
